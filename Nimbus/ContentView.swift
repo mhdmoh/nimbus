@@ -8,6 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var viewModel: CurrentWeatherViewModel
+    
+    init() {
+        _viewModel = StateObject(
+            wrappedValue: CurrentWeatherViewModel(
+                service: NimbusService(
+                    repo: NimbusRepo(
+                        remoteDS: NimbusDS(
+                            client: APIClient(),
+                            endpoint: NimbusEndpoints()
+                        )
+                    )
+                )
+            )
+        )
+    }
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -16,6 +33,11 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .onAppear{
+            Task {
+                await viewModel.fetchCurrentWeather()
+            }
+        }
     }
 }
 

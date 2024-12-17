@@ -25,6 +25,7 @@ struct APIClient: APIClientProtocol {
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
     
     private func setContentType(for request: inout URLRequest, contentType: ContentType) {
@@ -44,10 +45,11 @@ struct APIClient: APIClientProtocol {
         
         if let headers = headers {
             urlRequest.allHTTPHeaderFields = headers.getHeaders()
-            
         }
         
         urlRequest.httpMethod = request.method.rawValue
+        NLogger.shared.log("Response Status Code: \(urlRequest.url)", level: .info)
+
         let session = URLSession.shared
         do{
             if Request.Body.self != EmptyBody.self {
@@ -57,10 +59,7 @@ struct APIClient: APIClientProtocol {
                     setContentType(for: &urlRequest, contentType: request.contentType)
                     NLogger().log(String(data: urlRequest.httpBody!, encoding: .utf8) ?? "NO Body")
                 case .multipart:
-                    return .failure(.init(message: APIError.invalidURL.localizedDescription))
-//                    let mp = try convertToMultipart(media: body as! UploadMediaParams)
-//                    urlRequest.httpBody = mp.0
-//                    urlRequest.setValue(mp.1, forHTTPHeaderField: "Content-Type")
+                    return .failure(.init(message: APIError.invalidContentType.localizedDescription))
                 }
             }
             

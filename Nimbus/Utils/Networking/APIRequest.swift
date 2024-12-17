@@ -50,6 +50,7 @@ struct APIRequest<Body, Queries, Headers, Response>: APIRequestProtocol where Bo
     func createURL() -> URL? {
         var components = URLComponents(string: "\(NConstants.baseURL.rawValue)\(path)")
         components?.queryItems = queries?.getQueries()
+        components?.queryItems?.append(URLQueryItem(name: "appid", value: EnvironmentVars.appid ))
         return components?.url
     }
 }
