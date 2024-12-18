@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 @MainActor
 class CurrentWeatherViewModel: ObservableObject {
@@ -17,9 +18,9 @@ class CurrentWeatherViewModel: ObservableObject {
         self.service = service
     }
     
-    func fetchCurrentWeather() async {
+    func fetchCurrentWeather(location: CLLocationCoordinate2D) async {
         let result = await service.currentWeather(
-            .init(latitude: 47.4979, longitude: 19.0402)
+            .init(latitude: location.latitude, longitude: location.longitude)
         )
         switch result {
         case .success(let weather):

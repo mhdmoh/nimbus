@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var viewModel: CurrentWeatherViewModel
+    @StateObject var locationManager = LocationManager()
     
     init() {
         _viewModel = StateObject(
@@ -38,8 +39,13 @@ struct HomeView: View {
         }
         .padding()
         .onAppear{
-            Task {
-                await viewModel.fetchCurrentWeather()
+            locationManager.requestAuthorization()
+        }
+        .onReceive(locationManager.$location) { location in
+            if location != nil {
+                Task{
+                    await viewModel.fetchCurrentWeather(location: location!)
+                }
             }
         }
     }
