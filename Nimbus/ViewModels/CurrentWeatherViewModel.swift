@@ -18,7 +18,7 @@ class CurrentWeatherViewModel: ObservableObject {
     }
     
     func fetchCurrentWeather() async {
-        var result = await service.currentWeather(
+        let result = await service.currentWeather(
             .init(latitude: 47.4979, longitude: 19.0402)
         )
         switch result {

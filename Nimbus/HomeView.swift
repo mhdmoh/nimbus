@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
     @StateObject var viewModel: CurrentWeatherViewModel
     
     init() {
@@ -27,10 +27,14 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Group {
+                if let currentWeather = viewModel.currentWeather {
+                    CurrentWeatherView(weather: currentWeather)
+                } else {
+                    CurrentWeatherView(weather: CurrentWeather.example)
+                        .redacted(reason: .placeholder)
+                }
+            }
         }
         .padding()
         .onAppear{
@@ -42,5 +46,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    HomeView()
 }
