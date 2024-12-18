@@ -13,9 +13,14 @@ struct NimbusEndpoints: APIEndpointProtocol {
     
     enum Endpoints: String {
         case current = "/weather"
+        case forecast = "/forecast"
     }
     
     func currentWeather(queries: WeatherQueries) -> APIRequest<EmptyBody, WeatherQueries, EmptyHeaders, CurrentWeather> {
         return .init(path: Endpoint.current.rawValue,queries: queries)
+    }
+    
+    func weatherForecast(queries: WeatherQueries) -> APIRequest<EmptyBody, WeatherQueries, EmptyHeaders, Forecast> {
+        return .init(path: Endpoint.forecast.rawValue,queries: queries)
     }
 }

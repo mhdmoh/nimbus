@@ -43,6 +43,7 @@ struct CurrentWeather: Codable {
         clouds: Clouds(all: 100),
         dt: 1734511843,
         sys: Sys(
+            pod: nil,
             type: 2,
             id: 2009313,
             country: "HU",
@@ -84,9 +85,15 @@ struct Main: Codable {
 
 // MARK: - Sys
 struct Sys: Codable {
-    let type, id: Int
-    let country: String
-    let sunrise, sunset: Int
+    let pod: Pod?
+    let type, id: Int?
+    let country: String?
+    let sunrise, sunset: Int?
+}
+
+enum Pod: String, Codable {
+    case d = "d"
+    case n = "n"
 }
 
 // MARK: - Weather

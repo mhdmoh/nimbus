@@ -9,6 +9,7 @@ import Foundation
 
 protocol NimbusServiceProtocol {
     func currentWeather(_ queries: WeatherQueries) async -> Result<CurrentWeather, APIErrorModel>
+    func weatherForecast(_ queries: WeatherQueries) async -> Result<Forecast, APIErrorModel>
 }
 
 struct NimbusService: NimbusServiceProtocol {
@@ -20,5 +21,9 @@ struct NimbusService: NimbusServiceProtocol {
     
     func currentWeather(_ queries: WeatherQueries) async -> Result<CurrentWeather, APIErrorModel> {
         return await repo.currentWeather(queries)
+    }
+    
+    func weatherForecast(_ queries: WeatherQueries) async -> Result<Forecast, APIErrorModel> {
+        return await repo.weatherForecast(queries)
     }
 }
