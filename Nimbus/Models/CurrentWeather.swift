@@ -21,6 +21,39 @@ struct CurrentWeather: Codable {
     let timezone, id: Int
     let name: String
     let cod: Int
+    
+    static let example = CurrentWeather(
+        coord: Coord(lon: 19.0402, lat: 47.4979),
+        weather: [
+            Weather(id: 804, main: "Clouds", description: "overcast clouds", icon: "04d")
+        ],
+        base: "stations",
+        main: Main(
+            temp: 5.04,
+            feelsLike: 5.04,
+            tempMin: 4.76,
+            tempMax: 6.7,
+            pressure: 1026,
+            humidity: 88,
+            seaLevel: 1026,
+            grndLevel: 1004
+        ),
+        visibility: 10000,
+        wind: Wind(speed: 0.45, deg: 248, gust: 1.79),
+        clouds: Clouds(all: 100),
+        dt: 1734511843,
+        sys: Sys(
+            type: 2,
+            id: 2009313,
+            country: "HU",
+            sunrise: 1734503236,
+            sunset: 1734533636
+        ),
+        timezone: 3600,
+        id: 3054643,
+        name: "Budapest",
+        cod: 200
+    )
 }
 
 // MARK: - Clouds
@@ -68,3 +101,4 @@ struct Wind: Codable {
     let deg: Int
     let gust: Double?
 }
+

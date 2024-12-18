@@ -14,7 +14,8 @@ struct WeatherQueries: Encodable, APIQueriesProtocol {
     func getQueries() -> [URLQueryItem] {
         return [
             URLQueryItem(name: "lat", value: String(latitude)),
-            URLQueryItem(name: "lon", value: String(longitude))
+            URLQueryItem(name: "lon", value: String(longitude)),
+            URLQueryItem(name: "units", value: "metric")
         ]
     }
 }

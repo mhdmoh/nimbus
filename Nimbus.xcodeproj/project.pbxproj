@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5F16DF902D12C72F0083FD5F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5F16DF8F2D12C72F0083FD5F /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		5F5D8DA92D11973B00B0B521 /* Nimbus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nimbus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F16DF902D12C72F0083FD5F /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +72,7 @@
 			);
 			name = Nimbus;
 			packageProductDependencies = (
+				5F16DF8F2D12C72F0083FD5F /* Kingfisher */,
 			);
 			productName = Nimbus;
 			productReference = 5F5D8DA92D11973B00B0B521 /* Nimbus.app */;
@@ -98,6 +104,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				5F65016E2D1227B5007B8ABC /* XCRemoteSwiftPackageReference "Sourcery" */,
+				5F16DF8E2D12C72F0083FD5F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5F5D8DAA2D11973B00B0B521 /* Products */;
@@ -368,6 +375,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5F16DF8E2D12C72F0083FD5F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.3;
+			};
+		};
 		5F65016E2D1227B5007B8ABC /* XCRemoteSwiftPackageReference "Sourcery" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzysztofzablocki/Sourcery?ref=kazaimazai.com";
@@ -377,6 +392,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5F16DF8F2D12C72F0083FD5F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5F16DF8E2D12C72F0083FD5F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5F5D8DA12D11973B00B0B521 /* Project object */;
 }
