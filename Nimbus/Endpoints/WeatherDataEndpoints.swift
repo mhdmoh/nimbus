@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct NimbusEndpoints: APIEndpointProtocol {
+struct WeatherDataEndpoints: APIEndpointProtocol {
     typealias Endpoint = Endpoints
     
     
     enum Endpoints: String {
-        case current = "/weather"
-        case forecast = "/forecast"
+        case current = "/data/2.5/weather"
+        case forecast = "/data/2.5/forecast"
     }
     
     func currentWeather(queries: WeatherQueries) -> APIRequest<EmptyBody, WeatherQueries, EmptyHeaders, CurrentWeather> {

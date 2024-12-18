@@ -8,5 +8,5 @@
 import Foundation
 
 enum NConstants: String {
-    case baseURL = "https://api.openweathermap.org/data/2.5"
+    case baseURL = "https://api.openweathermap.org"
 }

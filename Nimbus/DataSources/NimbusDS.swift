@@ -10,22 +10,31 @@ import Foundation
 protocol NimbusDSProtocol {
     func currentWeather(queries: WeatherQueries) async -> Result<CurrentWeather, APIErrorModel>
     func weatherForecast(queries: WeatherQueries) async -> Result<Forecast, APIErrorModel>
+    
+    func reverseGeocoding(queries: GeocodingQueries) async -> Result<ReverseGeocodingElement, APIErrorModel>
 }
 
 struct NimbusDS: NimbusDSProtocol {
     private let client: APIClient
-    private let endpoint: NimbusEndpoints
     
-    init(client: APIClient, endpoint: NimbusEndpoints) {
+    private let weatherDataEndpoint: WeatherDataEndpoints
+    private let geoDataEndpoint: GeoDataEndpoints
+    
+    init(client: APIClient, weatherDataEndpoint: WeatherDataEndpoints, geoDataEndpoint: GeoDataEndpoints) {
         self.client = client
-        self.endpoint = endpoint
+        self.weatherDataEndpoint = weatherDataEndpoint
+        self.geoDataEndpoint = geoDataEndpoint
     }
     
     func currentWeather(queries: WeatherQueries) async -> Result<CurrentWeather, APIErrorModel> {
-        return await client.request(using: endpoint.currentWeather(queries: queries))
+        return await client.request(using: weatherDataEndpoint.currentWeather(queries: queries))
     }
     
     func weatherForecast(queries: WeatherQueries) async -> Result<Forecast, APIErrorModel> {
-        return await client.request(using: endpoint.weatherForecast(queries: queries))
+        return await client.request(using: weatherDataEndpoint.weatherForecast(queries: queries))
+    }
+    
+    func reverseGeocoding(queries: GeocodingQueries) async -> Result<ReverseGeocodingElement, APIErrorModel> {
+        return await client.request(using: geoDataEndpoint.reverseGeocoding(queries: queries)).map { $0.first! }
     }
 }

@@ -9,39 +9,36 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var viewModel: CurrentWeatherViewModel
-    @StateObject var locationManager = LocationManager()
+    @StateObject var locationManager : LocationManagerViewModel
     @StateObject var forecastViewModel: WeatherForecastViewModel
     
     init() {
-        _viewModel = StateObject(
-            wrappedValue: CurrentWeatherViewModel(
-                service: NimbusService(
-                    repo: NimbusRepo(
-                        remoteDS: NimbusDS(
-                            client: APIClient(),
-                            endpoint: NimbusEndpoints()
-                        )
-                    )
+        let service = NimbusService(
+            repo: NimbusRepo(
+                remoteDS: NimbusDS(
+                    client: APIClient(),
+                    weatherDataEndpoint: WeatherDataEndpoints(),
+                    geoDataEndpoint: GeoDataEndpoints()
                 )
             )
         )
-        
-        _forecastViewModel = StateObject(
-            wrappedValue: WeatherForecastViewModel(
-                service: NimbusService(
-                    repo: NimbusRepo(
-                        remoteDS: NimbusDS(
-                            client: APIClient(),
-                            endpoint: NimbusEndpoints()
-                        )
-                    )
-                )
-            )
-        )
+        _viewModel = StateObject(wrappedValue: CurrentWeatherViewModel(service: service))
+        _forecastViewModel = StateObject(wrappedValue: WeatherForecastViewModel(service: service))
+        _locationManager = StateObject(wrappedValue: LocationManagerViewModel(nimbusService: service))
     }
     
     var body: some View {
         VStack {
+            Group {
+                if let name = locationManager.locationName {
+                    ToolBarView(locationName: name)
+                } else {
+                    ToolBarView(locationName: "Some Location Name")
+                        .redacted(reason: .placeholder)
+                }
+            }
+            .padding()
+            
             Group {
                 if let currentWeather = viewModel.currentWeather {
                     CurrentWeatherView(weather: currentWeather)
@@ -83,7 +80,7 @@ struct HomeView: View {
                             .redacted(reason: .placeholder)
                         }
                     }
-                    .padding(.horizontal, 8)
+                    .padding(.horizontal, 4)
                 }
                 .scrollIndicators(.hidden)
             }

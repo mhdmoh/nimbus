@@ -19,8 +19,8 @@ struct ForecastItemView: View {
             KFImage.url(URL(string: item.weather[0].icon.icon())!)
                 .resizable()
                 .frame(
-                    width: 36,
-                    height: 36
+                    width:  40,
+                    height: 40
                 )
             
             Text(String(format: "%.1f \u{00B0}C", item.main.temp))

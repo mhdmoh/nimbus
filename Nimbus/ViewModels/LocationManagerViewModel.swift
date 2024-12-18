@@ -8,26 +8,47 @@
 import CoreLocation
 import CoreLocationUI
 
-class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+class LocationManagerViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     let manager = CLLocationManager()
+    let nimbusService: NimbusService
     
-    @Published var location: CLLocationCoordinate2D?
-    
-    override init() {
-        super.init()
-        manager.delegate = self
-        manager.startUpdatingLocation()
+    @Published var location: CLLocationCoordinate2D? {
+        didSet {
+            if location != nil {
+                Task{
+                    await getLocationName()
+                }
+            }
+        }
     }
+    @Published var locationName: String?
+    
+    init(nimbusService: NimbusService) {
+        self.nimbusService = nimbusService
+    }
+    
     
     func requestLocation() {
         manager.requestLocation()
     }
     
-    public func requestAuthorization(always: Bool = false) {
+    func requestAuthorization(always: Bool = false) {
+        manager.delegate = self
+        
         if always {
             self.manager.requestAlwaysAuthorization()
         } else {
             self.manager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    func getLocationName() async {
+        let result = await nimbusService.reverseGeocoding(queries: .init(latitude: location!.latitude, longitude: location!.longitude))
+        switch result {
+        case .success(let element):
+            locationName = "\(element.country),\(element.name)"
+        case .failure(let error):
+            NLogger().log("Couldn't get the name of the location \(error)")
         }
     }
     
