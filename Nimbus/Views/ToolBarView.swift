@@ -23,6 +23,8 @@ struct ToolBarView: View {
             Spacer()
             
             Image(.menu)
+                .renderingMode(.template)
+                .foregroundStyle(.foreground)
         }
     }
 }
