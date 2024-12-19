@@ -1,5 +1,5 @@
 {
-  "originHash" : "b712fb0ff00e4fa456ba8d9153940b61be9d834267ccd25bc25e5e769c06ab67",
+  "originHash" : "a8a3db298fa78aef5af538f68073e9955e4dd645fb418a1c441cf647906098bf",
   "pins" : [
     {
       "identity" : "aexml",
@@ -17,6 +17,24 @@
       "state" : {
         "revision" : "4b6133c3071d521489a80c38fb92d7983f19d438",
         "version" : "0.9.1"
+      }
+    },
+    {
+      "identity" : "grdb.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/groue/GRDB.swift",
+      "state" : {
+        "revision" : "84d25dfc9dc1766feb8c80fb04b9f7e2337fb83e",
+        "version" : "7.0.0-beta.6"
+      }
+    },
+    {
+      "identity" : "grdbquery",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/groue/GRDBQuery",
+      "state" : {
+        "revision" : "f279a57b7ba5749c05d347751a2f572f8759a7d2",
+        "version" : "0.10.1"
       }
     },
     {
@@ -170,6 +188,15 @@
       "state" : {
         "revision" : "930e82e5ae2432c71fe05f440b5d778285270bdb",
         "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "swinject",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Swinject/Swinject",
+      "state" : {
+        "revision" : "be9dbcc7b86811bc131539a20c6f9c2d3e56919f",
+        "version" : "2.9.1"
       }
     },
     {

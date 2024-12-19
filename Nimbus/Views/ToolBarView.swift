@@ -15,6 +15,7 @@ struct ToolBarView: View {
             VStack(alignment: .leading) {
                Text("Welcome Back To NIMBUS")
                     .font(.caption)
+                    .unredacted()
                 
                Text(locationName)
                     .font(.title3.bold())

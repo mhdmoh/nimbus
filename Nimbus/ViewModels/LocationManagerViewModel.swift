@@ -23,8 +23,8 @@ class LocationManagerViewModel: NSObject, ObservableObject, CLLocationManagerDel
     }
     @Published var locationName: String?
     
-    init(nimbusService: NimbusService) {
-        self.nimbusService = nimbusService
+    init(service: NimbusService) {
+        self.nimbusService = service
     }
     
     

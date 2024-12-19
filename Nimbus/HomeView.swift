@@ -6,25 +6,18 @@
 //
 
 import SwiftUI
+import Swinject
+import GRDBQuery
 
 struct HomeView: View {
-    @StateObject var viewModel: CurrentWeatherViewModel
-    @StateObject var locationManager : LocationManagerViewModel
-    @StateObject var forecastViewModel: WeatherForecastViewModel
+    @EnvironmentStateObject var viewModel: CurrentWeatherViewModel
+    @EnvironmentStateObject var locationManager : LocationManagerViewModel
+    @EnvironmentStateObject var forecastViewModel: WeatherForecastViewModel
     
     init() {
-        let service = NimbusService(
-            repo: NimbusRepo(
-                remoteDS: NimbusDS(
-                    client: APIClient(),
-                    weatherDataEndpoint: WeatherDataEndpoints(),
-                    geoDataEndpoint: GeoDataEndpoints()
-                )
-            )
-        )
-        _viewModel = StateObject(wrappedValue: CurrentWeatherViewModel(service: service))
-        _forecastViewModel = StateObject(wrappedValue: WeatherForecastViewModel(service: service))
-        _locationManager = StateObject(wrappedValue: LocationManagerViewModel(nimbusService: service))
+        _viewModel = EnvironmentStateObject { env in return CurrentWeatherViewModel(service: env.nimbusService) }
+        _forecastViewModel = EnvironmentStateObject { env in return WeatherForecastViewModel(service: env.nimbusService) }
+        _locationManager = EnvironmentStateObject { env in return LocationManagerViewModel(service: env.nimbusService) }
     }
     
     var body: some View {
@@ -104,4 +97,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+        .environment(\.container, Container.setupMockDependencies())
 }

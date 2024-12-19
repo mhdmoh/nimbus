@@ -39,6 +39,7 @@ struct CurrentWeatherView: View {
                                 
                                 Text("Feels Like")
                                     .font(.caption)
+                                    .unredacted()
                                 
                                 Text(String(format: "%.2f \u{00B0}C", weather.main.feelsLike))
                                     .font(.body.bold())
@@ -87,6 +88,7 @@ struct CurrentWeatherView: View {
                     
                     Text("Wind")
                         .font(.caption)
+                        .unredacted()
                 }
                 .frame(maxWidth: .infinity)
                 
@@ -104,6 +106,7 @@ struct CurrentWeatherView: View {
                     
                     Text("Humidity")
                         .font(.caption)
+                        .unredacted()
                 }
                 .frame(maxWidth: .infinity)
                 
@@ -121,6 +124,7 @@ struct CurrentWeatherView: View {
                     
                     Text("Clouds")
                         .font(.caption)
+                        .unredacted()
                 }
                 .frame(maxWidth: .infinity)
             }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5F16DF902D12C72F0083FD5F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5F16DF8F2D12C72F0083FD5F /* Kingfisher */; };
+		5F26DCC12D14060C00EDE4AB /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 5F26DCC02D14060C00EDE4AB /* Swinject */; };
+		5F26DD782D14091800EDE4AB /* GRDBQuery in Frameworks */ = {isa = PBXBuildFile; productRef = 5F26DD772D14091800EDE4AB /* GRDBQuery */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F16DF902D12C72F0083FD5F /* Kingfisher in Frameworks */,
+				5F26DD782D14091800EDE4AB /* GRDBQuery in Frameworks */,
+				5F26DCC12D14060C00EDE4AB /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +77,8 @@
 			name = Nimbus;
 			packageProductDependencies = (
 				5F16DF8F2D12C72F0083FD5F /* Kingfisher */,
+				5F26DCC02D14060C00EDE4AB /* Swinject */,
+				5F26DD772D14091800EDE4AB /* GRDBQuery */,
 			);
 			productName = Nimbus;
 			productReference = 5F5D8DA92D11973B00B0B521 /* Nimbus.app */;
@@ -105,6 +111,8 @@
 			packageReferences = (
 				5F65016E2D1227B5007B8ABC /* XCRemoteSwiftPackageReference "Sourcery" */,
 				5F16DF8E2D12C72F0083FD5F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				5F26DCBF2D14060C00EDE4AB /* XCRemoteSwiftPackageReference "Swinject" */,
+				5F26DD762D14091800EDE4AB /* XCRemoteSwiftPackageReference "GRDBQuery" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5F5D8DAA2D11973B00B0B521 /* Products */;
@@ -385,6 +393,22 @@
 				minimumVersion = 8.1.3;
 			};
 		};
+		5F26DCBF2D14060C00EDE4AB /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.1;
+			};
+		};
+		5F26DD762D14091800EDE4AB /* XCRemoteSwiftPackageReference "GRDBQuery" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDBQuery";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.1;
+			};
+		};
 		5F65016E2D1227B5007B8ABC /* XCRemoteSwiftPackageReference "Sourcery" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzysztofzablocki/Sourcery?ref=kazaimazai.com";
@@ -400,6 +424,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5F16DF8E2D12C72F0083FD5F /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		5F26DCC02D14060C00EDE4AB /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5F26DCBF2D14060C00EDE4AB /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+		5F26DD772D14091800EDE4AB /* GRDBQuery */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5F26DD762D14091800EDE4AB /* XCRemoteSwiftPackageReference "GRDBQuery" */;
+			productName = GRDBQuery;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
