@@ -42,6 +42,7 @@ struct ToolBarView: View {
                             .foregroundStyle(.foreground)
                         
                         Image(systemName: "chevron.down")
+                            .unredacted()
                     }
                         
                 }

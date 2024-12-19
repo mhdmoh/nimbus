@@ -23,29 +23,20 @@ struct HomeView: View {
     var body: some View {
         NavigationStack{
             VStack {
-                Group {
-                    if let name = locationManager.locationName {
-                        ToolBarView(locationName: name){
-                            
-                        }
-                    } else {
-                        ToolBarView(locationName: "Some Location Name") {
-                            
-                        }
-                            .redacted(reason: .placeholder)
-                    }
+                ToolBarView(locationName: locationManager.locationName ?? "Some Location Name"){
+                    
+                }
+                .if(locationManager.locationName == nil){ view in
+                    view.redacted(reason: .placeholder)
                 }
                 .padding()
                 
-                Group {
-                    if let currentWeather = viewModel.currentWeather {
-                        CurrentWeatherView(weather: currentWeather)
-                    } else {
-                        CurrentWeatherView(weather: CurrentWeather.example)
+                CurrentWeatherView(weather: viewModel.currentWeather ?? CurrentWeather.example)
+                    .if(viewModel.currentWeather == nil) {view in
+                        view
                             .redacted(reason: .placeholder)
                     }
-                }
-                .padding(.horizontal)
+                    .padding(.horizontal)
                 
                 VGap(space: 32)
                 
