@@ -14,6 +14,8 @@ struct HomeView: View {
     @EnvironmentStateObject var locationManager : LocationManagerViewModel
     @EnvironmentStateObject var forecastViewModel: WeatherForecastViewModel
     
+    @State var shouldAddNewLocation = false
+    
     init() {
         _viewModel = EnvironmentStateObject { env in return CurrentWeatherViewModel(service: env.nimbusService) }
         _forecastViewModel = EnvironmentStateObject { env in return WeatherForecastViewModel(service: env.nimbusService) }
@@ -24,7 +26,7 @@ struct HomeView: View {
         NavigationStack{
             VStack {
                 ToolBarView(locationName: locationManager.locationName ?? "Some Location Name"){
-                    
+                    shouldAddNewLocation = true
                 }
                 .if(locationManager.locationName == nil){ view in
                     view.redacted(reason: .placeholder)
@@ -76,6 +78,13 @@ struct HomeView: View {
                 
                 Spacer()
                 
+            }
+            .navigationDestination(isPresented: $shouldAddNewLocation) {
+                MapView(){ loc in
+                    shouldAddNewLocation = false
+                    locationManager.location = loc 
+                    NLogger().log("(\(loc.latitude),\(loc.longitude))")
+                }
             }
         }
         .onAppear{

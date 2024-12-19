@@ -17,7 +17,7 @@ struct ToolBarView: View {
     init(locationName: String, addNewLocationDelegate: @escaping () -> Void) {
         self.addNewLocationDelegate = addNewLocationDelegate
         self.locationName = locationName
-        self.options = ["Add new location", locationName]
+        self.options = ["Choose new location", locationName]
     }
     
     var body: some View {
@@ -30,7 +30,7 @@ struct ToolBarView: View {
                 Menu {
                     ForEach(options, id: \.self) { option in
                         Button(option){
-                            if option == "Add new location" {
+                            if option == "Choose new location" {
                                 addNewLocationDelegate()
                             }
                         }
