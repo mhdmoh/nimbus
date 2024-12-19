@@ -16,9 +16,23 @@
 		5F5D8DA92D11973B00B0B521 /* Nimbus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nimbus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		5F26DD792D14154500EDE4AB /* Exceptions for "Nimbus" folder in "Nimbus" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Configuration/EnvironmentVars/env-example.xcconfig",
+				Configuration/EnvironmentVars/env.xcconfig,
+			);
+			target = 5F5D8DA82D11973B00B0B521 /* Nimbus */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5F5D8DAB2D11973B00B0B521 /* Nimbus */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5F26DD792D14154500EDE4AB /* Exceptions for "Nimbus" folder in "Nimbus" target */,
+			);
 			path = Nimbus;
 			sourceTree = "<group>";
 		};
@@ -92,7 +106,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1610;
-				LastUpgradeCheck = 1610;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					5F5D8DA82D11973B00B0B521 = {
 						CreatedOnToolsVersion = 16.1;

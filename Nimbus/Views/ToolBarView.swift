@@ -9,6 +9,16 @@ import SwiftUI
 
 struct ToolBarView: View {
     let locationName: String
+    let addNewLocationDelegate: () -> Void
+    
+    private let options: [String]
+    
+    
+    init(locationName: String, addNewLocationDelegate: @escaping () -> Void) {
+        self.addNewLocationDelegate = addNewLocationDelegate
+        self.locationName = locationName
+        self.options = ["Add new location", locationName]
+    }
     
     var body: some View {
         HStack {
@@ -17,8 +27,26 @@ struct ToolBarView: View {
                     .font(.caption)
                     .unredacted()
                 
-               Text(locationName)
-                    .font(.title3.bold())
+                Menu {
+                    ForEach(options, id: \.self) { option in
+                        Button(option){
+                            if option == "Add new location" {
+                                addNewLocationDelegate()
+                            }
+                        }
+                    }
+                } label: {
+                    HStack{
+                        Text(locationName)
+                            .font(.title3.bold())
+                            .foregroundStyle(.foreground)
+                        
+                        Image(systemName: "chevron.down")
+                    }
+                        
+                }
+                .buttonStyle(.plain)
+
             }
             
             Spacer()
@@ -33,5 +61,7 @@ struct ToolBarView: View {
 #Preview {
     ToolBarView(
         locationName: "HU, Budapest"
-    )
+    ) {
+        
+    }
 }

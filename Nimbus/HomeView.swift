@@ -21,65 +21,71 @@ struct HomeView: View {
     }
     
     var body: some View {
-        VStack {
-            Group {
-                if let name = locationManager.locationName {
-                    ToolBarView(locationName: name)
-                } else {
-                    ToolBarView(locationName: "Some Location Name")
-                        .redacted(reason: .placeholder)
+        NavigationStack{
+            VStack {
+                Group {
+                    if let name = locationManager.locationName {
+                        ToolBarView(locationName: name){
+                            
+                        }
+                    } else {
+                        ToolBarView(locationName: "Some Location Name") {
+                            
+                        }
+                            .redacted(reason: .placeholder)
+                    }
                 }
-            }
-            .padding()
-            
-            Group {
-                if let currentWeather = viewModel.currentWeather {
-                    CurrentWeatherView(weather: currentWeather)
-                } else {
-                    CurrentWeatherView(weather: CurrentWeather.example)
-                        .redacted(reason: .placeholder)
+                .padding()
+                
+                Group {
+                    if let currentWeather = viewModel.currentWeather {
+                        CurrentWeatherView(weather: currentWeather)
+                    } else {
+                        CurrentWeatherView(weather: CurrentWeather.example)
+                            .redacted(reason: .placeholder)
+                    }
                 }
-            }
-            .padding(.horizontal)
-            
-            VGap(space: 32)
-            
-            ForecastTypeSelector(){ type in
-                forecastViewModel.selectedForecastType = type
-            }
-            .padding(.horizontal)
-            
-            VGap()
-            
-            GeometryReader{ reader in
-                ScrollView(.horizontal){
-                    Group{
-                        if let forecast = forecastViewModel.forecast {
-                            HStack(spacing: 0) {
-                                ForEach(forecast, id: \.dt) {item in
-                                    ForecastItemView(item: item)
+                .padding(.horizontal)
+                
+                VGap(space: 32)
+                
+                ForecastTypeSelector(){ type in
+                    forecastViewModel.selectedForecastType = type
+                }
+                .padding(.horizontal)
+                
+                VGap()
+                
+                GeometryReader{ reader in
+                    ScrollView(.horizontal){
+                        Group{
+                            if let forecast = forecastViewModel.forecast {
+                                HStack(spacing: 0) {
+                                    ForEach(forecast, id: \.dt) {item in
+                                        ForecastItemView(item: item)
+                                            .frame(
+                                                width: (reader.size.width / 4) - 6
+                                            )
+                                    }
+                                }
+                            } else {
+                                HStack(spacing: 0) {
+                                    ForecastItemView(item: ForecastItem.example)
                                         .frame(
-                                            width: (reader.size.width / 4) - 6
+                                            width: (reader.size.width / 4)
                                         )
                                 }
+                                .redacted(reason: .placeholder)
                             }
-                        } else {
-                            HStack(spacing: 0) {
-                                ForecastItemView(item: ForecastItem.example)
-                                    .frame(
-                                        width: (reader.size.width / 4)
-                                    )
-                            }
-                            .redacted(reason: .placeholder)
                         }
+                        .padding(.horizontal, 4)
                     }
-                    .padding(.horizontal, 4)
+                    .scrollIndicators(.hidden)
                 }
-                .scrollIndicators(.hidden)
+                
+                Spacer()
+                
             }
-            
-            Spacer()
-            
         }
         .onAppear{
             locationManager.requestAuthorization()

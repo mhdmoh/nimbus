@@ -20,7 +20,7 @@ extension EnvironmentValues {
 extension Container {
     
     static func setupDependencies() -> Container {
-        var container = Container()
+        let container = Container()
         container.register(APIClient.self) { _ in
             return APIClient()
         }

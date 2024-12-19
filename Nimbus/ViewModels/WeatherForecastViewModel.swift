@@ -39,8 +39,7 @@ class WeatherForecastViewModel: ObservableObject {
         case .today:
             forecast = weeklyForecast!.first?.value
         case .tomorrow:
-            forecast = weeklyForecast![weeklyForecast!.keys.flatMap{ $0 }[1]]
-            print(forecast)
+            forecast = weeklyForecast![weeklyForecast!.keys.compactMap{ $0 }[1]]
         case .next3Days:
             forecast = weeklyForecast!.dropFirst(2).flatMap{$0.value}
         }

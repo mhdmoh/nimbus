@@ -48,7 +48,7 @@ struct APIClient: APIClientProtocol {
         }
         
         urlRequest.httpMethod = request.method.rawValue
-        NLogger.shared.log("Response Status Code: \(urlRequest.url)", level: .info)
+        NLogger.shared.log("Response Status Code: \(String(describing: urlRequest.url))", level: .info)
 
         let session = URLSession.shared
         do{
