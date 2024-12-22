@@ -67,6 +67,7 @@
 				Models/Params/GeocodingQueries.swift,
 				Models/Params/WeatherQueries.swift,
 				Models/ReverseGeocodingElement.swift,
+				Models/WeatherEntity.swift,
 				Repositories/NimbusRepo.swift,
 				Services/NimbusService.swift,
 				Utils/BaseRepository.swift,

@@ -6,18 +6,23 @@
 //
 
 import SwiftUI
+import SwiftData
+
+enum ToolBarViewEvent {
+    case addNewLocation
+    case selectNewLocation(WeatherEntity)
+}
 
 struct ToolBarView: View {
     let locationName: String
-    let addNewLocationDelegate: () -> Void
+    let delegate: (ToolBarViewEvent) -> Void
     
-    private let options: [String]
-    
-    
-    init(locationName: String, addNewLocationDelegate: @escaping () -> Void) {
-        self.addNewLocationDelegate = addNewLocationDelegate
+    @Environment(\.modelContext) var context: ModelContext
+    @Query() private var weatherEntities: [WeatherEntity]
+
+    init(locationName: String, delegate: @escaping (ToolBarViewEvent) -> Void) {
+        self.delegate = delegate
         self.locationName = locationName
-        self.options = ["Choose new location", locationName]
     }
     
     var body: some View {
@@ -28,11 +33,13 @@ struct ToolBarView: View {
                     .unredacted()
                 
                 Menu {
-                    ForEach(options, id: \.self) { option in
-                        Button(option){
-                            if option == "Choose new location" {
-                                addNewLocationDelegate()
-                            }
+                    Button("Add new location"){
+                        delegate(.addNewLocation)
+                    }
+                    
+                    ForEach(weatherEntities, id: \.self) { option in
+                        Button(option.locationName){
+                            delegate(.selectNewLocation(option))
                         }
                     }
                 } label: {
@@ -62,7 +69,7 @@ struct ToolBarView: View {
 #Preview {
     ToolBarView(
         locationName: "HU, Budapest"
-    ) {
+    ) { event in
         
     }
 }

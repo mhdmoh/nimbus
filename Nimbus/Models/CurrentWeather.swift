@@ -22,6 +22,10 @@ struct CurrentWeather: Codable {
     let name: String
     let cod: Int
     
+    var locationName: String {
+        return "\(sys.country ?? ""),\(name)"
+    }
+    
     static let example = CurrentWeather(
         coord: Coord(lon: 19.0402, lat: 47.4979),
         weather: [

@@ -9,13 +9,14 @@ import WidgetKit
 import SwiftUI
 import Kingfisher
 import CoreLocation
+import SwiftData
 
 
 struct Provider: TimelineProvider {
     let service: NimbusService
     var lm = WidgetLocationManager()
     init() {
-        service = NimbusService(repo: NimbusRepo(remoteDS: NimbusDS(client: APIClient(), weatherDataEndpoint: WeatherDataEndpoints(), geoDataEndpoint: GeoDataEndpoints())))
+        service = NimbusService(repo: NimbusRepo(remoteDS: NimbusDS(client: APIClient(), weatherDataEndpoint: WeatherDataEndpoints(), geoDataEndpoint: GeoDataEndpoints()),container:try! ModelContainer(for: WeatherEntity.self)))
     }
     func placeholder(in context: Context) -> WeatherEntry {
         WeatherEntry(date: Date(), weather: CurrentWeather.example)

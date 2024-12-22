@@ -13,13 +13,13 @@ extension BaseRepository {
     func sendRequest<Response: Decodable>(
         call: () async ->  Result<Response, APIErrorModel>,
         offlineCall: (() async throws -> Response)? = nil, //todo:
-        cacheCall  : ((Response) -> Void)? = nil
+        cacheCall  : ((Response) async -> Void)? = nil
     ) async -> Result<Response, APIErrorModel> {
         let result = await call()
         switch result {
         case .success( let successResult):
             if let cacheCall {
-                cacheCall(successResult)
+                await cacheCall(successResult)
             }
             return .success(successResult)
         case .failure(let error):

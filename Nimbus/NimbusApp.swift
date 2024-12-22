@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Swinject
+import SwiftData
 
 extension EnvironmentValues {
     @Entry var container = Container()
@@ -35,8 +36,12 @@ extension Container {
             )
         }
         
+        container.register(ModelContainer.self) { _ in
+            return try! ModelContainer(for: WeatherEntity.self)
+        }
+        
         container.register(NimbusRepo.self) { resolver in
-            return NimbusRepo(remoteDS: resolver.resolve(NimbusDS.self)!)
+            return NimbusRepo(remoteDS: resolver.resolve(NimbusDS.self)!, container: resolver.resolve(ModelContainer.self)!)
         }
         
         container.register(NimbusService.self) { resolver in
@@ -68,5 +73,10 @@ struct NimbusApp: App {
             HomeView()
                 .environment(\.container, Container.setupDependencies())
         }
+        .modelContainer(for: WeatherEntity.self)
+    }
+    
+    init() {
+        print(URL.applicationSupportDirectory.path(percentEncoded: false))
     }
 }

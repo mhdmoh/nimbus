@@ -8,6 +8,7 @@
 import SwiftUI
 import Swinject
 import GRDBQuery
+import CoreLocation
 
 struct HomeView: View {
     @EnvironmentStateObject var viewModel: CurrentWeatherViewModel
@@ -25,8 +26,13 @@ struct HomeView: View {
     var body: some View {
         NavigationStack{
             VStack {
-                ToolBarView(locationName: locationManager.locationName ?? "Some Location Name"){
-                    shouldAddNewLocation = true
+                ToolBarView(locationName: locationManager.locationName ?? "Some Location Name"){ event in
+                    switch event {
+                    case .addNewLocation:
+                        shouldAddNewLocation = true
+                    case .selectNewLocation(let loc):
+                        locationManager.location = CLLocationCoordinate2D(latitude: loc.latitude, longitude: loc.longitude)
+                    }
                 }
                 .if(locationManager.locationName == nil){ view in
                     view.redacted(reason: .placeholder)

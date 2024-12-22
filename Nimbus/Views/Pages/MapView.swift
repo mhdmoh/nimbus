@@ -8,16 +8,27 @@
 import SwiftUI
 import MapKit
 import CoreLocation
+import SwiftData
+import Kingfisher
 
 struct MapView: View {
     @State private var position: CLLocationCoordinate2D?
+    @Query() private var locations: [WeatherEntity]
     
     var popWithResult: (CLLocationCoordinate2D) -> Void
     
     var body: some View {
         NavigationStack{
             ZStack{
-                Map()
+                Map {
+                    ForEach(locations) {location in
+                        Annotation(coordinate: location.latlng()) {
+                            WeatherMapMarkerView(weather: location)
+                        } label: {
+                            Text(location.locationName)
+                        }
+                    }
+                }
                 
                 Image(systemName: "mappin")
                     .renderingMode(.template)

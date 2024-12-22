@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftData
 
 protocol NimbusRepoProtocol {
     func currentWeather(_ queries: WeatherQueries) async -> Result<CurrentWeather, APIErrorModel>
@@ -16,14 +17,21 @@ protocol NimbusRepoProtocol {
 
 struct NimbusRepo: NimbusRepoProtocol, BaseRepository {
     private let remoteDS: NimbusDSProtocol
+    private let container: ModelContainer
     
-    init(remoteDS: NimbusDSProtocol) {
+    init(remoteDS: NimbusDSProtocol, container: ModelContainer) {
         self.remoteDS = remoteDS
+        self.container = container
     }
     
     func currentWeather(_ queries: WeatherQueries) async -> Result<CurrentWeather, APIErrorModel> {
         return await sendRequest {
             return await remoteDS.currentWeather(queries: queries)
+        } cacheCall: { curWeather in
+            let context = ModelContext(container)
+            let entity = WeatherEntity(weather: curWeather)
+            context.insert(entity)
+            try! context.save()
         }
     }
     
