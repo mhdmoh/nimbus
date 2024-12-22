@@ -30,7 +30,7 @@ struct CurrentWeather: Codable {
         base: "stations",
         main: Main(
             temp: 5.04,
-            feelsLike: 5.04,
+            feelsLike: 5.44,
             tempMin: 4.76,
             tempMax: 6.7,
             pressure: 1026,

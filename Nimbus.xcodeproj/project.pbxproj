@@ -8,15 +8,82 @@
 
 /* Begin PBXBuildFile section */
 		5F16DF902D12C72F0083FD5F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5F16DF8F2D12C72F0083FD5F /* Kingfisher */; };
+		5F22990C2D16CA2C00A20DCE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F22990B2D16CA2B00A20DCE /* WidgetKit.framework */; };
+		5F22990E2D16CA2C00A20DCE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F22990D2D16CA2C00A20DCE /* SwiftUI.framework */; };
+		5F2299192D16CA2E00A20DCE /* NimbusWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5F2299092D16CA2B00A20DCE /* NimbusWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5F2299232D16DE2100A20DCE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5F2299222D16DE2100A20DCE /* Kingfisher */; };
 		5F26DCC12D14060C00EDE4AB /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 5F26DCC02D14060C00EDE4AB /* Swinject */; };
 		5F26DD782D14091800EDE4AB /* GRDBQuery in Frameworks */ = {isa = PBXBuildFile; productRef = 5F26DD772D14091800EDE4AB /* GRDBQuery */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5F2299172D16CA2E00A20DCE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F5D8DA12D11973B00B0B521 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F2299082D16CA2B00A20DCE;
+			remoteInfo = NimbusWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5F22991A2D16CA2E00A20DCE /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5F2299192D16CA2E00A20DCE /* NimbusWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		5F2299092D16CA2B00A20DCE /* NimbusWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NimbusWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F22990B2D16CA2B00A20DCE /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		5F22990D2D16CA2C00A20DCE /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		5F5D8DA92D11973B00B0B521 /* Nimbus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nimbus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		5F22991E2D16CA2E00A20DCE /* Exceptions for "NimbusWidget" folder in "NimbusWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 5F2299082D16CA2B00A20DCE /* NimbusWidgetExtension */;
+		};
+		5F2299202D16DCCC00A20DCE /* Exceptions for "Nimbus" folder in "NimbusWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Configuration/EnvironmentVars/EnvironmentVars.generated.swift,
+				DataSources/NimbusDS.swift,
+				Endpoints/GeoDataEndpoints.swift,
+				Endpoints/WeatherDataEndpoints.swift,
+				Models/CurrentWeather.swift,
+				Models/Forecast.swift,
+				Models/Params/GeocodingQueries.swift,
+				Models/Params/WeatherQueries.swift,
+				Models/ReverseGeocodingElement.swift,
+				Repositories/NimbusRepo.swift,
+				Services/NimbusService.swift,
+				Utils/BaseRepository.swift,
+				"Utils/Extensions/String+Ext.swift",
+				Utils/NConstants.swift,
+				Utils/Networking/APIClient.swift,
+				Utils/Networking/APIEndpoint.swift,
+				Utils/Networking/APIError.swift,
+				Utils/Networking/APIHeaders.swift,
+				Utils/Networking/APIQueries.swift,
+				Utils/Networking/APIRequest.swift,
+				Utils/Networking/Models/APIErrorModel.swift,
+				Utils/Networking/Models/EmptyBody.swift,
+				Utils/NLogger.swift,
+			);
+			target = 5F2299082D16CA2B00A20DCE /* NimbusWidgetExtension */;
+		};
 		5F26DD792D14154500EDE4AB /* Exceptions for "Nimbus" folder in "Nimbus" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -28,10 +95,19 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		5F22990F2D16CA2C00A20DCE /* NimbusWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5F22991E2D16CA2E00A20DCE /* Exceptions for "NimbusWidget" folder in "NimbusWidgetExtension" target */,
+			);
+			path = NimbusWidget;
+			sourceTree = "<group>";
+		};
 		5F5D8DAB2D11973B00B0B521 /* Nimbus */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				5F26DD792D14154500EDE4AB /* Exceptions for "Nimbus" folder in "Nimbus" target */,
+				5F2299202D16DCCC00A20DCE /* Exceptions for "Nimbus" folder in "NimbusWidgetExtension" target */,
 			);
 			path = Nimbus;
 			sourceTree = "<group>";
@@ -39,6 +115,16 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5F2299062D16CA2B00A20DCE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F2299232D16DE2100A20DCE /* Kingfisher in Frameworks */,
+				5F22990E2D16CA2C00A20DCE /* SwiftUI.framework in Frameworks */,
+				5F22990C2D16CA2C00A20DCE /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5F5D8DA62D11973B00B0B521 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -52,10 +138,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F22990A2D16CA2B00A20DCE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5F22990B2D16CA2B00A20DCE /* WidgetKit.framework */,
+				5F22990D2D16CA2C00A20DCE /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5F5D8DA02D11973B00B0B521 = {
 			isa = PBXGroup;
 			children = (
 				5F5D8DAB2D11973B00B0B521 /* Nimbus */,
+				5F22990F2D16CA2C00A20DCE /* NimbusWidget */,
+				5F22990A2D16CA2B00A20DCE /* Frameworks */,
 				5F5D8DAA2D11973B00B0B521 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				5F5D8DA92D11973B00B0B521 /* Nimbus.app */,
+				5F2299092D16CA2B00A20DCE /* NimbusWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,6 +169,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5F2299082D16CA2B00A20DCE /* NimbusWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F22991D2D16CA2E00A20DCE /* Build configuration list for PBXNativeTarget "NimbusWidgetExtension" */;
+			buildPhases = (
+				5F2299052D16CA2B00A20DCE /* Sources */,
+				5F2299062D16CA2B00A20DCE /* Frameworks */,
+				5F2299072D16CA2B00A20DCE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				5F22990F2D16CA2C00A20DCE /* NimbusWidget */,
+			);
+			name = NimbusWidgetExtension;
+			packageProductDependencies = (
+				5F2299222D16DE2100A20DCE /* Kingfisher */,
+			);
+			productName = NimbusWidgetExtension;
+			productReference = 5F2299092D16CA2B00A20DCE /* NimbusWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		5F5D8DA82D11973B00B0B521 /* Nimbus */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5F5D8DB72D11973D00B0B521 /* Build configuration list for PBXNativeTarget "Nimbus" */;
@@ -80,10 +201,12 @@
 				5F5D8DA72D11973B00B0B521 /* Resources */,
 				5F65016D2D1226BE007B8ABC /* ShellScript */,
 				5F6501752D12286F007B8ABC /* ShellScript */,
+				5F22991A2D16CA2E00A20DCE /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5F2299182D16CA2E00A20DCE /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				5F5D8DAB2D11973B00B0B521 /* Nimbus */,
@@ -105,9 +228,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1610;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
+					5F2299082D16CA2B00A20DCE = {
+						CreatedOnToolsVersion = 16.2;
+					};
 					5F5D8DA82D11973B00B0B521 = {
 						CreatedOnToolsVersion = 16.1;
 					};
@@ -134,11 +260,19 @@
 			projectRoot = "";
 			targets = (
 				5F5D8DA82D11973B00B0B521 /* Nimbus */,
+				5F2299082D16CA2B00A20DCE /* NimbusWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5F2299072D16CA2B00A20DCE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5F5D8DA72D11973B00B0B521 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -186,6 +320,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5F2299052D16CA2B00A20DCE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5F5D8DA52D11973B00B0B521 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -195,7 +336,73 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5F2299182D16CA2E00A20DCE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F2299082D16CA2B00A20DCE /* NimbusWidgetExtension */;
+			targetProxy = 5F2299172D16CA2E00A20DCE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		5F22991B2D16CA2E00A20DCE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X423NX4WYH;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NimbusWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NimbusWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mhdmoh.com.Nimbus.NimbusWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5F22991C2D16CA2E00A20DCE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X423NX4WYH;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NimbusWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NimbusWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mhdmoh.com.Nimbus.NimbusWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		5F5D8DB52D11973D00B0B521 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -378,6 +585,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5F22991D2D16CA2E00A20DCE /* Build configuration list for PBXNativeTarget "NimbusWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F22991B2D16CA2E00A20DCE /* Debug */,
+				5F22991C2D16CA2E00A20DCE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5F5D8DA42D11973B00B0B521 /* Build configuration list for PBXProject "Nimbus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -435,6 +651,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		5F16DF8F2D12C72F0083FD5F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5F16DF8E2D12C72F0083FD5F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		5F2299222D16DE2100A20DCE /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5F16DF8E2D12C72F0083FD5F /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
