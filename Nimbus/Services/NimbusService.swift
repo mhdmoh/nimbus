@@ -10,6 +10,7 @@ import Foundation
 protocol NimbusServiceProtocol {
     func currentWeather(_ queries: WeatherQueries) async -> Result<CurrentWeather, APIErrorModel>
     func weatherForecast(_ queries: WeatherQueries) async -> Result<Forecast, APIErrorModel>
+    func updateWeathers() async -> Result<Bool, APIErrorModel>
     
     func reverseGeocoding(queries: GeocodingQueries) async -> Result<ReverseGeocodingElement, APIErrorModel>
 }
@@ -27,6 +28,10 @@ struct NimbusService: NimbusServiceProtocol {
     
     func weatherForecast(_ queries: WeatherQueries) async -> Result<Forecast, APIErrorModel> {
         return await repo.weatherForecast(queries)
+    }
+    
+    func updateWeathers() async -> Result<Bool, APIErrorModel> {
+        return await repo.updateWeathers()
     }
     
     func reverseGeocoding(queries: GeocodingQueries) async -> Result<ReverseGeocodingElement, APIErrorModel> {

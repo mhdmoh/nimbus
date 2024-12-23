@@ -10,12 +10,23 @@ import MapKit
 import CoreLocation
 import SwiftData
 import Kingfisher
+import GRDBQuery
 
 struct MapView: View {
     @State private var position: CLLocationCoordinate2D?
     @Query() private var locations: [WeatherEntity]
     
+    @EnvironmentStateObject var viewModel: MapViewModel
+    
     var popWithResult: (CLLocationCoordinate2D) -> Void
+    
+    init(popWithResult: @escaping (CLLocationCoordinate2D) -> Void) {
+        self.popWithResult = popWithResult
+        
+        _viewModel = EnvironmentStateObject { env in
+            return MapViewModel(service: env.nimbusService )
+        }
+    }
     
     var body: some View {
         NavigationStack{
@@ -62,6 +73,11 @@ struct MapView: View {
         }
         .onMapCameraChange { context in
             position = context.region.center
+        }
+        .onAppear {
+            Task {
+                await viewModel.updateWeathers()
+            }
         }
     }
 }

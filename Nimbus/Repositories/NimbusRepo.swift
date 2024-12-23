@@ -11,6 +11,7 @@ import SwiftData
 protocol NimbusRepoProtocol {
     func currentWeather(_ queries: WeatherQueries) async -> Result<CurrentWeather, APIErrorModel>
     func weatherForecast(_ queries: WeatherQueries) async -> Result<Forecast, APIErrorModel>
+    func updateWeathers() async -> Result<Bool, APIErrorModel>
     
     func reverseGeocoding(queries: GeocodingQueries) async -> Result<ReverseGeocodingElement, APIErrorModel>
 }
@@ -39,6 +40,18 @@ struct NimbusRepo: NimbusRepoProtocol, BaseRepository {
         return await sendRequest {
             return await remoteDS.weatherForecast(queries: queries)
         }
+    }
+    
+    func updateWeathers() async -> Result<Bool, APIErrorModel> {
+        let context = ModelContext(container)
+        let fetchDescriptor = FetchDescriptor<WeatherEntity>()
+        let queries = (try! context.fetch(fetchDescriptor)).map { WeatherQueries(latitude: $0.latitude, longitude: $0.longitude) }
+        
+        for query in queries {
+            let _ = await currentWeather(query)
+        }
+        
+        return .success(true)
     }
     
     func reverseGeocoding(queries: GeocodingQueries) async -> Result<ReverseGeocodingElement, APIErrorModel> {
