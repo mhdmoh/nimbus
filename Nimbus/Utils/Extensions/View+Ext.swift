@@ -25,4 +25,12 @@ extension View {
             self
         }
     }
+    
+    @ViewBuilder func redactedIf(_ condition: Bool) -> some View {
+        if condition {
+            self.redacted(reason: .placeholder)
+        } else {
+            self
+        }
+    }
 }
