@@ -15,12 +15,12 @@ protocol NimbusDSProtocol {
 }
 
 struct NimbusDS: NimbusDSProtocol {
-    private let client: APIClient
+    private let client: APIClientProtocol
     
     private let weatherDataEndpoint: WeatherDataEndpoints
     private let geoDataEndpoint: GeoDataEndpoints
     
-    init(client: APIClient, weatherDataEndpoint: WeatherDataEndpoints, geoDataEndpoint: GeoDataEndpoints) {
+    init(client: APIClientProtocol, weatherDataEndpoint: WeatherDataEndpoints, geoDataEndpoint: GeoDataEndpoints) {
         self.client = client
         self.weatherDataEndpoint = weatherDataEndpoint
         self.geoDataEndpoint = geoDataEndpoint

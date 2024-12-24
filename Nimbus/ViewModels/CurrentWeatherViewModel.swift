@@ -10,11 +10,11 @@ import CoreLocation
 
 @MainActor
 class CurrentWeatherViewModel: ObservableObject {
-    private let service: NimbusService
+    private let service: NimbusServiceProtocol
     
     @Published var currentWeather: CurrentWeather?
     
-    init(service: NimbusService) {
+    init(service: NimbusServiceProtocol) {
         self.service = service
     }
     

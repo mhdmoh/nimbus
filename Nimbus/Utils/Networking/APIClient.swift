@@ -12,8 +12,17 @@ protocol APIClientProtocol {
         using request: Request,
         body: Request.Body?,
         headers: Request.Headers?
-    ) async throws -> Result<Request.Response, APIErrorModel>
+    ) async -> Result<Request.Response, APIErrorModel>
 }
+
+extension APIClientProtocol {
+    func request<Request>(
+        using request: Request
+    ) async -> Result<Request.Response, APIErrorModel> where Request : APIRequestProtocol, Request.Body == EmptyBody, Request.Headers == EmptyHeaders {
+        return await self.request(using: request, body: nil , headers: nil)
+    }
+}
+
 
 struct APIClient: APIClientProtocol {
     let decoder = JSONDecoder()

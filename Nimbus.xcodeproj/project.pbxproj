@@ -17,6 +17,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5F0B22F82D1AD15D00DFDA3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F5D8DA12D11973B00B0B521 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F5D8DA82D11973B00B0B521;
+			remoteInfo = Nimbus;
+		};
 		5F2299172D16CA2E00A20DCE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5F5D8DA12D11973B00B0B521 /* Project object */;
@@ -41,6 +48,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5F0B22F42D1AD15D00DFDA3C /* Nimbus_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Nimbus_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F2299092D16CA2B00A20DCE /* NimbusWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NimbusWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F22990B2D16CA2B00A20DCE /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		5F22990D2D16CA2C00A20DCE /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -96,6 +104,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		5F0B22F52D1AD15D00DFDA3C /* Nimbus_Tests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Nimbus_Tests;
+			sourceTree = "<group>";
+		};
 		5F22990F2D16CA2C00A20DCE /* NimbusWidget */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -116,6 +129,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5F0B22F12D1AD15D00DFDA3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5F2299062D16CA2B00A20DCE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -153,6 +173,7 @@
 			children = (
 				5F5D8DAB2D11973B00B0B521 /* Nimbus */,
 				5F22990F2D16CA2C00A20DCE /* NimbusWidget */,
+				5F0B22F52D1AD15D00DFDA3C /* Nimbus_Tests */,
 				5F22990A2D16CA2B00A20DCE /* Frameworks */,
 				5F5D8DAA2D11973B00B0B521 /* Products */,
 			);
@@ -163,6 +184,7 @@
 			children = (
 				5F5D8DA92D11973B00B0B521 /* Nimbus.app */,
 				5F2299092D16CA2B00A20DCE /* NimbusWidgetExtension.appex */,
+				5F0B22F42D1AD15D00DFDA3C /* Nimbus_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,6 +192,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5F0B22F32D1AD15D00DFDA3C /* Nimbus_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F0B22FC2D1AD15D00DFDA3C /* Build configuration list for PBXNativeTarget "Nimbus_Tests" */;
+			buildPhases = (
+				5F0B22F02D1AD15D00DFDA3C /* Sources */,
+				5F0B22F12D1AD15D00DFDA3C /* Frameworks */,
+				5F0B22F22D1AD15D00DFDA3C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5F0B22F92D1AD15D00DFDA3C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				5F0B22F52D1AD15D00DFDA3C /* Nimbus_Tests */,
+			);
+			name = Nimbus_Tests;
+			packageProductDependencies = (
+			);
+			productName = Nimbus_Tests;
+			productReference = 5F0B22F42D1AD15D00DFDA3C /* Nimbus_Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		5F2299082D16CA2B00A20DCE /* NimbusWidgetExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5F22991D2D16CA2E00A20DCE /* Build configuration list for PBXNativeTarget "NimbusWidgetExtension" */;
@@ -232,6 +277,10 @@
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
+					5F0B22F32D1AD15D00DFDA3C = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 5F5D8DA82D11973B00B0B521;
+					};
 					5F2299082D16CA2B00A20DCE = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -262,11 +311,19 @@
 			targets = (
 				5F5D8DA82D11973B00B0B521 /* Nimbus */,
 				5F2299082D16CA2B00A20DCE /* NimbusWidgetExtension */,
+				5F0B22F32D1AD15D00DFDA3C /* Nimbus_Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5F0B22F22D1AD15D00DFDA3C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5F2299072D16CA2B00A20DCE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -321,6 +378,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5F0B22F02D1AD15D00DFDA3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5F2299052D16CA2B00A20DCE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -338,6 +402,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5F0B22F92D1AD15D00DFDA3C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F5D8DA82D11973B00B0B521 /* Nimbus */;
+			targetProxy = 5F0B22F82D1AD15D00DFDA3C /* PBXContainerItemProxy */;
+		};
 		5F2299182D16CA2E00A20DCE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5F2299082D16CA2B00A20DCE /* NimbusWidgetExtension */;
@@ -346,6 +415,46 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		5F0B22FA2D1AD15D00DFDA3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X423NX4WYH;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "mhdmoh.com.Nimbus-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nimbus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Nimbus";
+			};
+			name = Debug;
+		};
+		5F0B22FB2D1AD15D00DFDA3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X423NX4WYH;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "mhdmoh.com.Nimbus-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nimbus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Nimbus";
+			};
+			name = Release;
+		};
 		5F22991B2D16CA2E00A20DCE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -586,6 +695,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5F0B22FC2D1AD15D00DFDA3C /* Build configuration list for PBXNativeTarget "Nimbus_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F0B22FA2D1AD15D00DFDA3C /* Debug */,
+				5F0B22FB2D1AD15D00DFDA3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5F22991D2D16CA2E00A20DCE /* Build configuration list for PBXNativeTarget "NimbusWidgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

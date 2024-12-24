@@ -12,8 +12,8 @@ import SwiftData
 extension EnvironmentValues {
     @Entry var container = Container()
     
-    var nimbusService: NimbusService {
-        return self.container.resolve(NimbusService.self)!
+    var nimbusService: NimbusServiceProtocol {
+        return self.container.resolve(NimbusServiceProtocol.self)!
     }
 }
 
@@ -22,15 +22,15 @@ extension Container {
     
     static func setupDependencies() -> Container {
         let container = Container()
-        container.register(APIClient.self) { _ in
+        container.register(APIClientProtocol.self) { _ in
             return APIClient()
         }
         
         container.registerEndpoints()
         
-        container.register(NimbusDS.self) { resolver in
+        container.register(NimbusDSProtocol.self) { resolver in
             return NimbusDS(
-                client: resolver.resolve(APIClient.self)!,
+                client: resolver.resolve(APIClientProtocol.self)!,
                 weatherDataEndpoint: resolver.resolve(WeatherDataEndpoints.self)!,
                 geoDataEndpoint: resolver.resolve(GeoDataEndpoints.self)!
             )
@@ -40,12 +40,12 @@ extension Container {
             return try! ModelContainer(for: WeatherEntity.self)
         }
         
-        container.register(NimbusRepo.self) { resolver in
-            return NimbusRepo(remoteDS: resolver.resolve(NimbusDS.self)!, container: resolver.resolve(ModelContainer.self)!)
+        container.register(NimbusRepoProtocol.self) { resolver in
+            return NimbusRepo(remoteDS: resolver.resolve(NimbusDSProtocol.self)!, container: resolver.resolve(ModelContainer.self)!)
         }
         
-        container.register(NimbusService.self) { resolver in
-            return NimbusService(repo: resolver.resolve(NimbusRepo.self)!)
+        container.register(NimbusServiceProtocol.self) { resolver in
+            return NimbusService(repo: resolver.resolve(NimbusRepoProtocol.self)!)
         }
         
         return container

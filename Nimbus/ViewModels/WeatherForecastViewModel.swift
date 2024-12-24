@@ -17,7 +17,7 @@ enum ForecastTypes: String, CaseIterable {
 @MainActor
 class WeatherForecastViewModel: ObservableObject {
     // MARK: - Properties
-    private let service: NimbusService
+    private let service: NimbusServiceProtocol
     
     @Published var forecast: [ForecastItem]?
     @Published var weeklyForecast: [Int: [ForecastItem]]?
@@ -26,7 +26,7 @@ class WeatherForecastViewModel: ObservableObject {
     }
     
     // MARK: - Initializer
-    init(service: NimbusService) {
+    init(service: NimbusServiceProtocol) {
         self.service = service
     }
     

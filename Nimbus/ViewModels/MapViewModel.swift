@@ -9,11 +9,11 @@ import Foundation
 
 class MapViewModel: ObservableObject {
     
-    private let service: NimbusService
+    private let service: NimbusServiceProtocol
     
     @Published var updated: Bool = false
     
-    init(service: NimbusService) {
+    init(service: NimbusServiceProtocol) {
         self.service = service
     }
     

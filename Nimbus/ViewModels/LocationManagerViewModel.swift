@@ -10,7 +10,7 @@ import CoreLocationUI
 
 class LocationManagerViewModel: NSObject, ObservableObject {
     private let manager = CLLocationManager()
-    private let nimbusService: NimbusService
+    private let nimbusService: NimbusServiceProtocol
 
     @Published var locationName: String?
     @Published var location: CLLocationCoordinate2D? {
@@ -20,7 +20,7 @@ class LocationManagerViewModel: NSObject, ObservableObject {
         }
     }
     
-    init(service: NimbusService) {
+    init(service: NimbusServiceProtocol) {
         self.nimbusService = service
         super.init()
         manager.delegate = self
