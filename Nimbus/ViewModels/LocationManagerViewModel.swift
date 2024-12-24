@@ -8,38 +8,30 @@
 import CoreLocation
 import CoreLocationUI
 
-class LocationManagerViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
-    let manager = CLLocationManager()
-    let nimbusService: NimbusService
-    
+class LocationManagerViewModel: NSObject, ObservableObject {
+    private let manager = CLLocationManager()
+    private let nimbusService: NimbusService
+
+    @Published var locationName: String?
     @Published var location: CLLocationCoordinate2D? {
         didSet {
-            if location != nil {
-                Task{
-                    await getLocationName()
-                }
-            }
+            guard location != nil else { return }
+            Task{ await getLocationName() }
         }
     }
-    @Published var locationName: String?
     
     init(service: NimbusService) {
         self.nimbusService = service
+        super.init()
+        manager.delegate = self
     }
-    
     
     func requestLocation() {
         manager.requestLocation()
     }
     
     func requestAuthorization(always: Bool = false) {
-        manager.delegate = self
-        
-        if always {
-            self.manager.requestAlwaysAuthorization()
-        } else {
-            self.manager.requestWhenInUseAuthorization()
-        }
+        always ? manager.requestAlwaysAuthorization() : manager.requestWhenInUseAuthorization()
     }
     
     func getLocationName() async {
@@ -51,9 +43,12 @@ class LocationManagerViewModel: NSObject, ObservableObject, CLLocationManagerDel
             NLogger().log("Couldn't get the name of the location \(error)")
         }
     }
-    
+}
+
+extension LocationManagerViewModel: CLLocationManagerDelegate{
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        if manager.authorizationStatus == .authorizedAlways || manager.authorizationStatus == .authorizedWhenInUse {
+        let status = manager.authorizationStatus
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
             requestLocation()
         }
     }
