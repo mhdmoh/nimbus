@@ -13,9 +13,11 @@ class LocationManagerViewModel: NSObject, ObservableObject {
     private let nimbusService: NimbusServiceProtocol
 
     @Published var locationName: String?
+    @Published var denied: Bool = false
     @Published var location: CLLocationCoordinate2D? {
         didSet {
             guard location != nil else { return }
+            denied = false
             Task{ await getLocationName() }
         }
     }
@@ -50,6 +52,8 @@ extension LocationManagerViewModel: CLLocationManagerDelegate{
         let status = manager.authorizationStatus
         if status == .authorizedAlways || status == .authorizedWhenInUse {
             requestLocation()
+        } else if status == .denied {
+            denied = true
         }
     }
     

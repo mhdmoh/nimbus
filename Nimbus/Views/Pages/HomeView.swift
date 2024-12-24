@@ -91,9 +91,29 @@ struct HomeView: View {
                     locationManager.location = loc
                 }
             }
+            .navigationDestination(isPresented: $locationManager.denied) {
+                LocationPermissionView() { event in
+                    switch event {
+                    case .givePermission:
+                        openAppSettings()
+                    case .selectOnMap:
+                        shouldAddNewLocation = true
+                    }
+                }
+            }
         }
         .onAppear{ locationManager.requestAuthorization() }
         .onReceive(locationManager.$location, perform: fetchWeatherData)
+    }
+    
+    private func openAppSettings() {
+        if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(appSettings, options: [:]) { value in
+                if value {
+                    locationManager.requestAuthorization()
+                }
+            }
+        }
     }
 }
 
