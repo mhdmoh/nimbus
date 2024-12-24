@@ -100,7 +100,7 @@ struct HomeView: View {
             if location != nil {
                 Task{
                     await viewModel.fetchCurrentWeather(location: location!)
-                    await forecastViewModel.forecast(location: location!)
+                    await forecastViewModel.fetchForecast(location: location!)
                 }
             }
         }
